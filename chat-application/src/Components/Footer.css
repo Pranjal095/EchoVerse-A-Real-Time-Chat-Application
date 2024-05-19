@@ -1,0 +1,45 @@
+html{
+  font-size: 16px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.footer-container{
+  padding: 2.5rem;
+  height: 10vh;
+  background-color: black;
+}
+
+.message-field{
+  width: 80%;
+  height: 100%;
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  color: black;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.send{
+  width: 10rem;
+  background-color: black;
+  border: 0.2rem solid white;
+  padding: 0.8rem;
+  padding-bottom: 1.1rem;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  margin-top: 0.7rem;
+  margin-left: 0.7rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  font-family: "Protest Riot", sans-serif;
+  transition: background-color 0.4s,color 0.4s;
+}
+
+.send:hover{
+  background-color: white;
+  color: black;
+}

@@ -1,0 +1,112 @@
+html{
+  font-size: 16px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.change-container{
+  background-image: url(../background.jpg);
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+}
+
+.app-title{
+  padding-top: 2rem;
+  font-size: 3.9rem;
+  font-family: "Protest Riot", sans-serif;
+  background: linear-gradient(90deg,gray 10%,lightgrey 55%,white);
+  background-size: 200% 100%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: colour-change 16s ease-in infinite;
+}
+
+@keyframes colour-change{
+  0%{
+    background-position: 200% center;
+  }
+  25%{
+    background-position: 100% center;
+  }
+  50%{
+    background-position: 0% center;
+  }
+  75%{
+    background-position: -100% center;
+  }
+  100%{
+    background-position: -200% center;
+  }
+}
+
+.form{
+  margin: 1rem auto;
+  padding: 2rem;
+  width: 50rem;
+}
+
+.input-field{
+  padding: 1rem;
+  background-color: black;
+}
+
+.input{
+  color: black;
+  padding: 0.5rem;
+  width: 14rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+legend{
+  font-family: 'Protest Riot',sans-serif;
+  color: white;
+  font-size: 2.4rem;;
+}
+
+.password-label{
+  margin-left: 2rem;
+}
+
+.profile-username{
+  font-family: 'Protest Riot',sans-serif;
+  color: white;
+  padding: 0.5rem;
+  width: 14rem;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.submit{
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  width: 20rem;
+  text-align: center;
+  padding: 0.5rem;
+  transition: background-color 0.4s,color 0.4s;
+}
+
+.submit:hover{
+  background-color: white;
+  color: black;
+}
+
+.new-user{
+  font-size: 1.4rem;
+  color: white;
+  font-family: 'Protest Riot',sans-serif;
+}
+
+.icon{
+  color: white;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}

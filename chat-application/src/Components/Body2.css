@@ -1,0 +1,98 @@
+html{
+  font-size: 16px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.body-container{
+  border: 0.4rem solid white;
+}
+
+.room-header{
+  width: 97%;
+  height: 6vh;
+  display: flex;
+  font-size: 1.9rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 600;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.3rem;
+  background-color: black;
+}
+
+.leave-chat{
+  padding: 0.6rem;
+  margin: 3rem;
+  width: 10rem;
+  font-size: 1.2rem;
+  font-family: "Protest Riot", sans-serif;
+  background-color: black;
+  cursor: pointer;
+  border: 0.2rem solid white;
+  transition: background-color 0.4s,color 0.4s;
+}
+
+.leave-chat:hover{
+  background-color: white;
+  color: black;
+}
+
+.all-chats{
+  width: 100%;
+  height: 68vh;
+  padding: 1.3rem;
+  overflow-y: scroll;
+}
+
+.all-chats>*{
+  margin-bottom: 1rem;
+}
+
+.sender-name1{
+  color: white;
+  text-align: right;
+  font-size: 1.4rem;
+  font-family: "Protest Riot", sans-serif;
+  margin-right: 20rem;
+  margin-bottom: 0.5rem;
+}
+
+.message-sent{
+  background-color: lightgreen;
+  width: 35rem;
+  padding: 0.8rem;
+  border-radius: 1.2rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-left: auto;
+  margin-right: 3rem;
+}
+
+.message-sent p{
+  color: black;
+  font-size: 1.3rem;
+}
+
+.sender-name2{
+  color: white;
+  font-size: 1.4rem;
+  font-family: "Protest Riot", sans-serif;
+  margin-left: 17rem;
+  margin-bottom: 0.5rem;
+}
+
+.message-received{
+  background-color: white;
+  width: 35rem;
+  padding: 0.8rem;
+  border-radius: 1.2rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.message-received p{
+  color: black;
+  font-size: 1.3rem;
+}
