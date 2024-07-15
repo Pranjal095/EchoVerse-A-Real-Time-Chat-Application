@@ -5,17 +5,21 @@ import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
 import { useNavigate } from 'react-router-dom';
+import useWindowDimensions from '../useWindowDimensionsHook';
+import { encryptText } from '../HelperFunctions';
 
 const NewUser=({ socket })=>{
-  const navigate=useNavigate();
+  const windowWidth = useWindowDimensions()["width"];
 
-  const [username,setUsername]=useState("");
-  const [password1,setPassword1]=useState("");
-  const [type1,setType1]=useState('password');
-  const [icon1,setIcon1]=useState(eyeOff);
-  const [password2,setPassword2]=useState("");
-  const [type2,setType2]=useState('password');
-  const [icon2,setIcon2]=useState(eyeOff);
+  const navigate = useNavigate();
+
+  const [username,setUsername] = useState("");
+  const [password1,setPassword1] = useState("");
+  const [type1,setType1] = useState('password');
+  const [icon1,setIcon1] = useState(eyeOff);
+  const [password2,setPassword2] = useState("");
+  const [type2,setType2] = useState('password');
+  const [icon2,setIcon2] = useState(eyeOff);
 
   const toggle1=()=>{
     if(type1==='password'){
@@ -57,7 +61,10 @@ const NewUser=({ socket })=>{
           navigate("/error");
           socket.emit('error',data["error"]);
         }
-        else navigate("/loggedin/"+username);
+        else{
+          //use encrypted username for path identifier
+          navigate("/"+encryptText(username));
+        }
       })
     }
   }
@@ -68,19 +75,37 @@ const NewUser=({ socket })=>{
       <form className='form' onSubmit={formSubmit}>
       <fieldset className='input-field'>
         <legend>New User</legend>
-        <label htmlFor='user-name'>USERNAME: </label>
-        <input className='input' id='user-name' type='text' name='username' placeholder='Enter your username here...' onChange={(e) => setUsername(e.target.value)} value={username} />
+        <label htmlFor='user-name'>USERNAME</label>
+        {/*adding responsiveness for mobile devices*/}
+        {
+          windowWidth<768 ? 
+          <br /> :
+          null
+        }
+        <input className='username-input' id='user-name' type='text' name='username' placeholder='Enter your username here...' onChange={(e) => setUsername(e.target.value)} value={username} />
         <br />
         <br />
-        <label className='password-label' htmlFor='password'>PASSWORD: </label>
-        <input className='input' id='password' type={type1} name='password' placeholder='Enter your password here...' onChange={(e) => setPassword1(e.target.value)} value={password1} />
+        <label className='password-label' htmlFor='password'>PASSWORD</label>
+        {/*adding responsiveness for mobile devices*/}
+        {
+          windowWidth<768 ? 
+          <br /> :
+          null
+        }
+        <input className='password-input' id='password' type={type1} name='password' placeholder='Enter your password here...' onChange={(e) => setPassword1(e.target.value)} value={password1} />
         <span onClick={toggle1}>
           <Icon className="icon" icon={icon1} size={22}/>
         </span>
         <br />
         <br /> 
-        <label htmlFor='re-password'>RE-ENTER PASSWORD:</label>
-        <input className='input' id='re-password' type={type2} placeholder='Re-enter the password...' onChange={(e) => setPassword2(e.target.value)} value={password2} />
+        <label htmlFor='re-password'>RE-ENTER PASSWORD</label>
+        {/*adding responsiveness for mobile devices*/}
+        {
+          windowWidth<768 ? 
+          <br /> :
+          null
+        }
+        <input className='password-input' id='re-password' type={type2} placeholder='Re-enter the password...' onChange={(e) => setPassword2(e.target.value)} value={password2} />
         <span onClick={toggle2}>
           <Icon className="icon" icon={icon2} size={22}/>
         </span>

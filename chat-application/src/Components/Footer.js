@@ -1,20 +1,22 @@
 import React from "react";
 import './Footer.css';
 import { useState } from "react";
+import { encryptText,decryptText } from "../HelperFunctions";
 
 const Footer=({ socket })=>{
 //get the username using the current webpage url
-const URL=window.location.href;
-const username=URL.split("/")[5];
+const URL = window.location.href;
+const username = decryptText(URL.split("/")[4]);
 
 //get the roomID using the current webpage url
-const roomID=URL.split("/")[6];
+const roomID = URL.split("/")[5];
 
-const [message,setMessage]=useState("");
+const [message,setMessage] = useState("");
 const sendMessage=(e)=>{
     e.preventDefault();
     message.trim()
-    socket.emit('newMessage',{text: message, name: username, id: `${socket.id}${Math.random()}`, roomID: roomID});
+    //encrypt the message before sending to server
+    socket.emit('newMessage',{ text: encryptText(message), name: username, id: `${socket.id}${Math.random()}`, roomID: roomID});
     
     setMessage("");
 }

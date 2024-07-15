@@ -1,6 +1,7 @@
 import React from "react";
 import './Sidebar2.css';
 import { useState,useEffect } from 'react';
+import { decryptText } from "../HelperFunctions";
 
 const Sidebar2=({ socket })=>{
   let [users,setUsers]=useState([]);
@@ -9,12 +10,10 @@ const Sidebar2=({ socket })=>{
     socket.on('memberResponse',(data)=>setUsers(data));
   },[socket,users]);
 
-  //get the username using the current webpage url
-  const URL=window.location.href;
-  const username=URL.split("/")[5];
-
-  //get the roomID using the current webpage url
-  const roomID=URL.split("/")[6];
+  //get the username and roomID using the current webpage url
+  const URL = window.location.href;
+  const username = decryptText(URL.split("/")[4]);
+  const roomID = URL.split("/")[5];
 
   //access only those users which are in the same group
   users=users.filter((user)=>user["roomID"] === roomID);

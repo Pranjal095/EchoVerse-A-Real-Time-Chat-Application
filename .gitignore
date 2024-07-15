@@ -1,0 +1,5 @@
+/chat-application/node_modules
+/back-end/node_modules
+
+/chat-application/src/.env
+/back-end/.env

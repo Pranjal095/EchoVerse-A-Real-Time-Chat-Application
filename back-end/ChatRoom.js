@@ -1,7 +1,7 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
 //defining the subschema for messages (to be used in chatRoomSchema)
-const messageSchema=new mongoose.Schema({
+const messageSchema = new mongoose.Schema({
   text:{
     type: String,
     required: true
@@ -19,7 +19,7 @@ const messageSchema=new mongoose.Schema({
 })
 
 //defining the schema and model for the chatroom collection
-const chatRoomSchema=new mongoose.Schema({
+const chatRoomSchema = new mongoose.Schema({
   roomID:{
     type: String,
     required: true
@@ -36,5 +36,5 @@ const chatRoomSchema=new mongoose.Schema({
   }
 })
 
-const ChatRoom=mongoose.model("ChatRoom",chatRoomSchema);
-module.exports=ChatRoom;
+const ChatRoom = mongoose.model("ChatRoom",chatRoomSchema);
+module.exports = ChatRoom;

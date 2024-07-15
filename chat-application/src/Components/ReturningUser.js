@@ -5,8 +5,12 @@ import { useState } from 'react';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
+import useWindowDimensions from '../useWindowDimensionsHook';
+import { encryptText } from '../HelperFunctions';
 
 const ReturningUser=({ socket })=>{
+  const windowWidth = useWindowDimensions()["width"];
+
   const navigate=useNavigate();
 
   const [username,setUsername]=useState("");
@@ -34,7 +38,10 @@ const ReturningUser=({ socket })=>{
         navigate("/error");
         socket.emit('error',data["error"]);
       }
-      else navigate("/loggedin/"+username);
+      else{
+        //use encrypted username for path identifier
+        navigate("/"+encryptText(username));
+      } 
     })
   }
 
@@ -42,25 +49,37 @@ const ReturningUser=({ socket })=>{
     <div className='container'>
       <h1 className='app-title'>EchoVerse</h1>
       <form className='form' onSubmit={formSubmit}>
-      <fieldset className='input-field'>
-        <legend>User Login</legend>
-        <label htmlFor='user-name'>USERNAME: </label>
-        <input className='input' id='user-name' type='text' name='username' placeholder='Enter username here...' onChange={(e)=>setUsername(e.target.value)} value={username} />
-        <br />
-        <br />
-        <label className='password-label' htmlFor='password'>PASSWORD: </label>
-        <input className='input' id='password' type={type} name='password' placeholder='Enter password here...' onChange={(e) => setPassword(e.target.value)} value={password} />
-        <span onClick={toggle}>
-            <Icon className="icon" icon={icon} size={22}/>
-        </span>
-        <br />
-        <br />
-        <br />
-        <input className='submit' type="submit" value="LOGIN" />
-        <br />
-        <br />
-        <p className='new-user'>New User? <Link to="new">Click here</Link></p>
-      </fieldset>
+        <fieldset className='input-field'>
+          <legend>User Login</legend>
+          <label htmlFor='user-name'>USERNAME</label>
+          {/*adding responsiveness for mobile devices*/}
+          {
+            windowWidth<768 ? 
+            <br /> :
+            null
+          }
+          <input className='username-input' id='user-name' type='text' name='username' placeholder='Enter username here...' onChange={(e)=>setUsername(e.target.value)} value={username} />
+          <br />
+          <br />
+          <label className='password-label' htmlFor='password'>PASSWORD</label>
+          {/*adding responsiveness for mobile devices*/}
+          {
+            windowWidth<768 ? 
+            <br /> :
+            null
+          }
+          <input className='password-input' id='password' type={type} name='password' placeholder='Enter password here...' onChange={(e) => setPassword(e.target.value)} value={password} />
+          <span onClick={toggle}>
+              <Icon className="icon" icon={icon} size={22}/>
+          </span>
+          <br />
+          <br />
+          <br />
+          <input className='submit' type="submit" value="LOGIN" />
+          <br />
+          <br />
+          <p className='new-user'>New User? <Link to="new">Click here</Link></p>
+        </fieldset>
       </form>
     </div>
   )

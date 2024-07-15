@@ -1,20 +1,22 @@
 import React from "react";
 import './Body2.css';
 import { useNavigate } from 'react-router-dom';
+import { decryptText } from "../HelperFunctions";
 
-const Body1=({ messages, socket, roomname })=>{
+const Body2=({ messages, socket, roomname })=>{
   //get the username using the current webpage url
-  const URL=window.location.href;
-  const username=URL.split("/")[5];
+  const URL = window.location.href;
+  const encryptedUsername = URL.split("/")[4]
+  const username = decryptText(encryptedUsername);
   
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   //get the roomID using the current webpage url
-  const roomID=URL.split("/")[6];
+  const roomID = URL.split("/")[5];
 
   const leaveChat=()=>{
     socket.emit('leaveResponse');
-    navigate("/loggedin/"+username);
+    navigate("/"+encryptedUsername);
   }
 
   return(
@@ -22,24 +24,27 @@ const Body1=({ messages, socket, roomname })=>{
       <header className='room-header'>
           <p>{roomname}: {roomID}</p>
           <button className='leave-chat' onClick={leaveChat}>
-              LEAVE CHAT
+              LEAVE
           </button>
       </header>
 
       <div className="all-chats">
-
-        {messages.map((message=>message["name"]===username ? (
+        {messages.map((message=>message["name"]===username ? 
+        (
         <div className='chat-container' key={message["id"]}>
             <p className='sender-name1'>You</p>
             <div className='message-sent'>
-                <p>{message["text"]}</p>
+              {/*decrypt the ciphertext before displaying*/}
+                <p>{decryptText(message["text"])}</p>
             </div>
         </div>
-        ) : (
+        ) : 
+        (
           <div className='chat-container' key={message["id"]}>
             <p className="sender-name2">{message["name"]}</p>
             <div className='message-received'>
-                <p>{message["text"]}</p>
+              {/*decrypt the ciphertext before displaying*/}
+                <p>{decryptText(message["text"])}</p>
             </div>
         </div>
         )))}
@@ -48,4 +53,4 @@ const Body1=({ messages, socket, roomname })=>{
   )
 }
 
-export default Body1;
+export default Body2;

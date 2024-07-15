@@ -8,15 +8,17 @@ html{
 }
 
 .container{
-  background-image: url(../login-background.jpg);
+  background: url(../login-background.jpg);
   background-size: cover;
-  height: 100vh;
+  background-position-x: center;
+  height: 100dvh;
+  width: 100%;
   text-align: center;
 }
 
 .app-title{
-  padding-top: 2rem;
-  font-size: 3.9rem;
+  font-size: 3.2rem;
+  padding-top: 3.5rem;
   font-family: "Protest Riot", sans-serif;
   background: linear-gradient(90deg,gray 10%,lightgrey 55%,white);
   background-size: 200% 100%;
@@ -24,6 +26,7 @@ html{
   -webkit-background-clip: text;
   background-clip: text;
   animation: colour-change 16s ease-in infinite;
+  margin-bottom: 8vh;
 }
 
 @keyframes colour-change{
@@ -44,40 +47,35 @@ html{
   }
 }
 
-.form{
-  margin: 1rem auto;
-  padding: 2rem;
-  width: 50rem;
-}
-
 .input-field{
-  padding: 1rem;
+  padding: 1.3rem;
   background-color: black;
+  margin: auto;
 }
 
 legend{
   font-family: 'Protest Riot',sans-serif;
   color: white;
-  font-size: 2.4rem;;
+  font-size: 1.8rem;
 }
 
 label{
   font-family: 'Protest Riot',sans-serif;
   color: white;
-  margin-right: 1rem;
   font-size: 1.4rem;
+  margin-right: 0.4rem;
 }
 
-.password-label{
-  margin-left: 2rem;
-}
-
-.input{
+.username-input,.password-input{
   color: black;
   padding: 0.5rem;
-  width: 14rem;
-  font-size: 1rem;
+  width: 44vw;
+  font-size: 0.8rem;
   text-align: center;
+}
+
+.password-input{
+  margin-left: 1.95rem;
 }
 
 .submit{
@@ -86,7 +84,7 @@ label{
   cursor: pointer;
   border-radius: 0.5rem;
   font-size: 1.1rem;
-  width: 20rem;
+  width: 10rem;
   text-align: center;
   padding: 0.5rem;
   transition: background-color 0.4s,color 0.4s;
@@ -105,6 +103,43 @@ label{
 
 .icon{
   color: white;
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
   cursor: pointer;
+}
+
+/*for non-mobile devices*/
+@media only screen and (min-width: 768px){
+  .app-title{
+    font-size: 3.9rem;
+    padding-top: 2rem;
+    margin-bottom: 1.9rem;
+  }
+
+  .input-field{
+    padding: 3rem 8rem 3rem 8rem;
+  }
+
+  legend{
+    font-size: 2.4rem;
+  }
+
+  label{
+    font-size: 1.6rem;
+    margin-right: 1rem;
+  }
+
+  .password-label{
+    margin-left: 1.9rem;
+  }
+
+  .username-input{
+    width: 20rem;
+    font-size: 1rem;
+  }
+
+  .password-input{
+    width: 20rem;
+    margin-left: 0;
+    font-size: 1rem;
+  }
 }

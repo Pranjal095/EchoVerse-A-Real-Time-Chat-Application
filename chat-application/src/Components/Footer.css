@@ -8,29 +8,30 @@ html{
 }
 
 .footer-container{
-  padding: 2.5rem;
+  margin-top: 5vh;
+  padding: 1vh 0 5vh 6vw;
   height: 10vh;
   background-color: black;
 }
 
 .message-field{
-  width: 80%;
+  width: 60vw;
   height: 100%;
   border-radius: 0.8rem;
-  padding: 1.2rem;
+  padding: 2vw;
   color: black;
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .send{
-  width: 10rem;
+  width: 20vw;
   background-color: black;
   border: 0.2rem solid white;
-  padding: 0.8rem;
-  padding-bottom: 1.1rem;
+  padding: 2vw;
   border-radius: 0.8rem;
-  font-size: 1.6rem;
+  font-size: 4vw;
   margin-top: 0.7rem;
   margin-left: 0.7rem;
   margin-bottom: 2rem;
@@ -42,4 +43,25 @@ html{
 .send:hover{
   background-color: white;
   color: black;
+}
+
+@media only screen and (min-width: 768px){
+  .footer-container{
+    margin-top: 0;
+    padding: 2.5rem;
+  }
+
+  .message-field{
+    width: 80%;
+    padding: 1.2rem;
+    font-size: 1.4rem;
+    text-align: left;
+  }
+
+  .send{
+    width: 10rem;
+    padding: 0.8rem;
+    padding-bottom: 1.1rem;
+    font-size: 1.6rem;
+  }
 }

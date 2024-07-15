@@ -8,8 +8,8 @@ import ChangeProfile from './Components/ChangeProfile.js';
 import ChatRoom from './Components/ChatRoom.js';
 import socketIO from 'socket.io-client';
 
-const expressConnectURL="http://localhost:3001";
-const socket=socketIO.connect(expressConnectURL,{
+const expressConnectURL = process.env.REACT_APP_SERVER_URI || "http://localhost:3001";
+const socket = socketIO.connect(expressConnectURL,{
   transports: ['websocket']
 });
 
@@ -23,12 +23,12 @@ const App=()=>{
 
         <Route path='error' element={<Error socket={ socket } />} />
 
-        <Route path='loggedin/:username' element={<LoggedUser socket={ socket } 
+        <Route path=':username' element={<LoggedUser socket={ socket } 
         />} />
 
-        <Route path='loggedin/:username/changeprofile' element={<ChangeProfile socket={ socket } />} />
+        <Route path=':username/changeprofile' element={<ChangeProfile socket={ socket } />} />
 
-        <Route path='loggedin/:username/:roomID' element={<ChatRoom socket={ socket } />} />
+        <Route path=':username/:roomID' element={<ChatRoom socket={ socket } />} />
       </Routes>
     </Router>
   )

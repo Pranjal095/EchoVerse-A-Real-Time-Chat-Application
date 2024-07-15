@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const Error=({ socket })=>{
-  const [errorMessage,setErrorMessage]=useState("");
+  const [errorMessage,setErrorMessage] = useState("");
   socket.on('errorResponse',(data)=>{
     setErrorMessage(data);
   })
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const formSubmit=(e)=>{
     e.preventDefault();
@@ -26,7 +26,7 @@ const Error=({ socket })=>{
         <h1 className="error-message">{errorMessage}</h1>
         <br />
         <br />
-        <input className='submit' type="submit" value="GO BACK TO LOGIN PAGE" />
+        <input className='submit' type="submit" value="GO BACK" />
       </fieldset>
       </form>
     </div>

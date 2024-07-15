@@ -8,15 +8,13 @@ html{
 }
 
 .body-container{
-  border: 0.4rem solid white;
+  border: none;
 }
 
 .room-header{
-  width: 97%;
   height: 6vh;
   display: flex;
   font-size: 1.9rem;
-  font-family: 'Times New Roman', Times, serif;
   font-weight: 600;
   align-items: center;
   justify-content: space-between;
@@ -24,11 +22,16 @@ html{
   background-color: black;
 }
 
+.room-header p{
+  font-family: 'Protest Riot',sans-serif;
+}
+
 .logout-app{
-  padding: 0.6rem;
-  margin: 3rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  margin-right: 2rem;
   width: 10rem;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-family: "Protest Riot", sans-serif;
   background-color: black;
   cursor: pointer;
@@ -42,20 +45,19 @@ html{
 }
 
 .all-forms{
-  width: 100%;
+  width: 100vw;
   height: 84.1vh;
-  padding: 1.3rem;
   overflow-y: scroll;
   text-align: center;
 }
 
-.form{
-  margin: 1rem auto;
-  padding: 2rem;
-  max-width: 50rem;
+.room-form{
+  padding: 1rem;
+  width: 50vw;
+  margin: 5vw 0 0 5vw;
 }
 
-.input-field{
+.room-field{
   padding: 1rem;
   background-color: black;
 }
@@ -63,20 +65,20 @@ html{
 legend{
   font-family: 'Protest Riot',sans-serif;
   color: white;
-  font-size: 2.4rem;;
+  font-size: 1.8rem;
 }
 
 .room-label{
   color: white;
   margin-right: 1rem;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-family: 'Protest Riot',sans-serif;
 }
 
 .input-room{
   color: black;
   padding: 0.7rem;
-  width: 21rem;
+  width: 64vw;
   font-size: 0.9rem;
   text-align: center;
 }
@@ -84,8 +86,7 @@ legend{
 .input-id{
   color: black;
   padding: 0.7rem;
-  margin-left: 2rem;
-  width: 21rem;
+  width: 64vw;
   font-size: 0.9rem;
   text-align: center;
 }
@@ -105,4 +106,47 @@ legend{
 .submit:hover{
   background-color: white;
   color: black;
+}
+
+@media only screen and (min-width: 768px){
+  .body-container{
+    border: 0.4rem solid white;
+  }
+
+  .logout-app{
+    padding: 0.6rem;
+    margin: 3rem;
+    font-size: 1.2rem;
+    width: 12rem;
+  }
+
+  .all-forms{
+    width: 100%;
+    padding: 1.3rem;
+  }
+
+  .room-form{
+    margin: 1rem auto;
+    max-width: 50rem;
+  }
+
+  .room-field{
+    margin: auto;
+  }
+  
+  legend{
+    font-size: 2.4rem;
+  }
+
+  .room-label{
+    font-size: 1.6rem;
+  }
+
+  .input-room{
+    width: 21rem;
+  }
+
+  .input-id{
+    width: 21rem;
+  }
 }

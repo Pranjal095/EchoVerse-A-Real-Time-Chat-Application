@@ -1,50 +1,51 @@
-const express=require('express');
-const app=express();
-const http=require('http').Server(app);
-const cors=require('cors');
-const mongoose=require('mongoose');
-const bcrypt=require("bcrypt");
-const reactAppURL="http://localhost:3000";
-const PORT=process.env.PORT_HTTP || 3001;
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const cors = require('cors');
+const mongoose = require('mongoose');
+const bcrypt = require("bcrypt");
+const reactAppURL = process.env.REACT_APP_URI || "http://localhost:3000";
+const PORT = process.env.PORT_HTTP || 3001;
 
 //connecting to the myapp database
-mongoose.connect("mongodb://127.0.0.1:27017/myapp");
-const User=require('./User.js');
-const ChatRoom=require('./ChatRoom.js');
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/myapp");
+const User = require('./User.js');
+const ChatRoom = require('./ChatRoom.js');
 
 //incorporating the cors functionality
 app.use(cors());
 
 //configuring the socket.io module
-const socketIO=require('socket.io')(http,{
+const socketIO = require('socket.io')(http,{
   cors:{
     origin: reactAppURL
   }
 });
 
 //create array of all users present in rooms
-let members=[];
+let members = [];
 
 //updates on user activity to be logged to console
 socketIO.on('connection',(socket)=>{
   //event: login request issued
   socket.on('userLogin',async(data)=>{
-    let response={};
+    let response = {};
 
     try{
-      const existingUser=await User.findOne({ username: data["username"] });
+      const existingUser = await User.findOne({ username: data["username"] });
       if(!existingUser){
-        response["error"]="User with given username does not exist.";
+        response["error"] = "User with given username does not exist.";
       }
       else{
-        const passwordMatch=await bcrypt.compare(data["password"],existingUser["hashedPassword"]);
+        const passwordMatch = await bcrypt.compare(data["password"],existingUser["hashedPassword"]);
         if(!passwordMatch){
-          response["error"]="Invalid password.";
+          response["error"] = "Invalid password.";
         }
       }
     }
     catch(err){
-      response["error"]="An unexpected error occurred during user login.";
+      response["error"] = "An unexpected error occurred during user login.";
     }
     
     socket.emit('loginResponse',response);
@@ -53,18 +54,18 @@ socketIO.on('connection',(socket)=>{
 
   //event: user-registration request issued
   socket.on('newUser',async(data)=>{
-    let response={};
-    const existingUser=await User.findOne({ username: data["username"] });
+    let response = {};
+    const existingUser = await User.findOne({ username: data["username"] });
 
     if(existingUser){
-      response["error"]="User with given username already exists.";
+      response["error"] = "User with given username already exists.";
     }
     else{
-      const saltRounds=10;
-      const salt=await bcrypt.genSalt(saltRounds);
-      const hash=await bcrypt.hash(data["password"],salt);
+      const saltRounds = 10;
+      const salt = await bcrypt.genSalt(saltRounds);
+      const hash = await bcrypt.hash(data["password"],salt);
 
-      let user=new User({
+      let user = new User({
         username: data["username"],
         hashedPassword: hash,
       })
@@ -73,7 +74,7 @@ socketIO.on('connection',(socket)=>{
         await user.save();
       }
       catch(err){
-        response["error"]="An unexpected error occurred while registering the user.";
+        response["error"] = "An unexpected error occurred while registering the user.";
       }
     }
 
@@ -89,7 +90,7 @@ socketIO.on('connection',(socket)=>{
 
   //event: new room request issued
   socket.on('newRoom',async(data)=>{
-    let room=new ChatRoom({
+    let room = new ChatRoom({
       roomID: data["roomID"],
       roomname: data["roomname"],
       messages: []
@@ -105,7 +106,7 @@ socketIO.on('connection',(socket)=>{
 
   //new event: join room request issued
   socket.on('joinRoom',async(data)=>{
-    const existingRoom=await ChatRoom.findOne({ roomID: data["roomID"] });
+    const existingRoom = await ChatRoom.findOne({ roomID: data["roomID"] });
 
     if(!existingRoom){
       socketIO.emit('joinResponse',{ error: "Room with given ID does not exist."});
@@ -121,7 +122,7 @@ socketIO.on('connection',(socket)=>{
   //event: new message sent
   socket.on('newMessage',async(data)=>{
     socketIO.emit('messageResponse',data);
-    const existingRoom=await ChatRoom.findOne({ roomID: data["roomID"] });
+    const existingRoom = await ChatRoom.findOne({ roomID: data["roomID"] });
     existingRoom["messages"].push({ text: data["text"], name: data["name"], id: data["id"] });
     await existingRoom.save();
   })
@@ -129,34 +130,34 @@ socketIO.on('connection',(socket)=>{
 
   //event: EchoRoom leave request issued
   socket.on('leaveResponse',()=>{
-    members=members.filter((user)=>user["socketID"] !== socket.id);
+    members = members.filter((user)=>user["socketID"] !== socket.id);
     socketIO.emit('memberResponse',members);
   })
 
 
   //event: password-change request issued
   socket.on('changePassword',async(data)=>{
-    let response={};
+    let response = {};
 
     try{
-      const existingUser=await User.findOne({ username: data["username"] });
+      const existingUser = await User.findOne({ username: data["username"] });
 
-      const passwordMatch=await bcrypt.compare(data["originalPassword"],existingUser["hashedPassword"]);
+      const passwordMatch = await bcrypt.compare(data["originalPassword"],existingUser["hashedPassword"]);
 
       if(!passwordMatch){
-        response["error"]="Original password entered is invalid. For authentication purposes, kindly login again to the application.";
+        response["error"] = "Original password entered is invalid. For authentication purposes, kindly login again to the application.";
       }
       else{
-        const saltRounds=10;
-        const salt=await bcrypt.genSalt(saltRounds);
-        const hash=await bcrypt.hash(data["newPassword"],salt);
+        const saltRounds = 10;
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hash = await bcrypt.hash(data["newPassword"],salt);
 
-        existingUser["hashedPassword"]=hash;
+        existingUser["hashedPassword"] = hash;
         await existingUser.save();
       }
     }
     catch(err){
-      response["error"]="An unexpected error occurred during password change. Kindly login again to the application.";
+      response["error"] = "An unexpected error occurred during password change. Kindly login again to the application.";
     }
     
     socket.emit('changeResponse',response);
@@ -165,7 +166,7 @@ socketIO.on('connection',(socket)=>{
   
   //new event: user disconnects from application
   socket.on('disconnect',()=>{
-    members=members.filter((user)=>user["socketID"] !== socket.id);
+    members = members.filter((user)=>user["socketID"] !== socket.id);
     socketIO.emit('memberResponse',members);
   })
 });
