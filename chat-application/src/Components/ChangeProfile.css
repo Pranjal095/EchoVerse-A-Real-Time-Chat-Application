@@ -27,7 +27,7 @@ html{
   -webkit-background-clip: text;
   background-clip: text;
   animation: colour-change 16s ease-in infinite;
-  margin-bottom: 8vh;
+  margin-bottom: 8dvh;
 }
 
 @keyframes colour-change{

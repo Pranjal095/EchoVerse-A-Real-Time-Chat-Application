@@ -5,19 +5,141 @@ html{
 *{
   margin: 0;
   padding: 0;
-  color: white;
 }
 
-.app-container{
-  background-image: url(../background.jpg);
+.container{
+  background: url(../login-background.jpg);
   background-size: cover;
-  display: flex;
-  width: 100%;
+  background-position-x: center;
   height: 100dvh;
-  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
-.parent-container{
-  height: 100%;
-  flex: 0.78;
+.app-title{
+  font-size: 3.2rem;
+  padding-top: 3.5rem;
+  font-family: "Protest Riot", sans-serif;
+  background: linear-gradient(90deg,gray 10%,lightgrey 55%,white);
+  background-size: 200% 100%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: colour-change 16s ease-in infinite;
+  margin-bottom: 8dvh;
+}
+
+@keyframes colour-change{
+  0%{
+    background-position: 200% center;
+  }
+  25%{
+    background-position: 100% center;
+  }
+  50%{
+    background-position: 0% center;
+  }
+  75%{
+    background-position: -100% center;
+  }
+  100%{
+    background-position: -200% center;
+  }
+}
+
+.input-field{
+  padding: 1.3rem;
+  background-color: black;
+  margin: auto;
+}
+
+legend{
+  font-family: 'Protest Riot',sans-serif;
+  color: white;
+  font-size: 1.8rem;
+}
+
+label{
+  font-family: 'Protest Riot',sans-serif;
+  color: white;
+  font-size: 1.4rem;
+  margin-right: 0.4rem;
+}
+
+.username-input,.password-input{
+  color: black;
+  padding: 0.5rem;
+  width: 44vw;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.password-input{
+  margin-left: 1.95rem;
+}
+
+.submit{
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  width: 10rem;
+  text-align: center;
+  padding: 0.5rem;
+  transition: background-color 0.4s,color 0.4s;
+}
+
+.submit:hover{
+  background-color: white;
+  color: black;
+}
+
+.new-user{
+  font-size: 1.4rem;
+  color: white;
+  font-family: 'Protest Riot',sans-serif;
+}
+
+.icon{
+  color: white;
+  margin-left: 0.2rem;
+  cursor: pointer;
+}
+
+/*for non-mobile devices*/
+@media only screen and (min-width: 768px){
+  .app-title{
+    font-size: 3.9rem;
+    padding-top: 2rem;
+    margin-bottom: 1.9rem;
+  }
+
+  .input-field{
+    padding: 3rem 8rem 3rem 8rem;
+  }
+
+  legend{
+    font-size: 2.4rem;
+  }
+
+  label{
+    font-size: 1.6rem;
+    margin-right: 1rem;
+  }
+
+  .password-label{
+    margin-left: 1.9rem;
+  }
+
+  .username-input{
+    width: 20rem;
+    font-size: 1rem;
+  }
+
+  .password-input{
+    width: 20rem;
+    margin-left: 0;
+    font-size: 1rem;
+  }
 }

@@ -13,7 +13,7 @@ html{
 
 .room-header{
   width: 97%;
-  height: 6vh;
+  height: 6dvh;
   display: flex;
   font-size: 5vw;
   font-family: 'Times New Roman', Times, serif;
@@ -21,6 +21,7 @@ html{
   align-items: center;
   justify-content: space-between;
   background-color: black;
+  padding: 1rem;
 }
 
 .leave-chat{
@@ -43,7 +44,7 @@ html{
 
 .all-chats{
   width: 100vw;
-  height: 71vh;
+  height: 67dvh;
   overflow-y: scroll;
   text-align: center;
 }
@@ -112,6 +113,7 @@ html{
 
   .room-header{
     font-size: 1.9rem;
+    padding: 3.5dvh;
   }
 
   .leave-chat{
@@ -123,6 +125,7 @@ html{
 
   .all-chats{
     width: 100%;
+    height: 71dvh;
   }
 
   .sender-name1{

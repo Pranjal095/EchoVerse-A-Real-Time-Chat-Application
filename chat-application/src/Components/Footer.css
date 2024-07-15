@@ -8,9 +8,8 @@ html{
 }
 
 .footer-container{
-  margin-top: 5vh;
-  padding: 1vh 0 5vh 6vw;
-  height: 10vh;
+  padding: 1dvh 0 12dvh 6vw;
+  height: 10dvh;
   background-color: black;
 }
 
@@ -48,7 +47,7 @@ html{
 @media only screen and (min-width: 768px){
   .footer-container{
     margin-top: 0;
-    padding: 2.5rem;
+    padding: 3dvh;
   }
 
   .message-field{

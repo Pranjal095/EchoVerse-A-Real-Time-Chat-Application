@@ -12,13 +12,13 @@ html{
 }
 
 .room-header{
-  height: 6vh;
+  height: 6dvh;
   display: flex;
   font-size: 1.9rem;
   font-weight: 600;
   align-items: center;
   justify-content: space-between;
-  padding: 1.3rem;
+  padding: 1rem;
   background-color: black;
 }
 
@@ -46,7 +46,7 @@ html{
 
 .all-forms{
   width: 100vw;
-  height: 84.1vh;
+  height: 80.8dvh;
   overflow-y: scroll;
   text-align: center;
 }
@@ -111,6 +111,11 @@ legend{
 @media only screen and (min-width: 768px){
   .body-container{
     border: 0.4rem solid white;
+  }
+
+  .room-header{
+    font-size: 1.9rem;
+    padding: 3.5dvh;
   }
 
   .logout-app{
