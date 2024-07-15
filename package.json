@@ -1,0 +1,16 @@
+{
+    "name": "echoverse",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "install-server": "cd back-end && npm install",
+      "start-server": "cd back-end && node server.js",
+      "install-client": "cd chat-application && npm install",
+      "build-client": "cd chat-application && npm run build",
+      "start-client": "cd chat-application && npm run start"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
