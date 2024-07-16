@@ -44,7 +44,7 @@ html{
 
 .all-chats{
   width: 100vw;
-  height: 74.5dvh;
+  height: 76.5dvh;
   overflow-y: scroll;
   text-align: center;
 }
@@ -125,7 +125,7 @@ html{
 
   .all-chats{
     width: 100%;
-    height: 71dvh;
+    height: 75.5dvh;
   }
 
   .sender-name1{
