@@ -46,7 +46,7 @@ html{
 
 .all-forms{
   width: 100vw;
-  height: 86.5dvh;
+  height: 86.6dvh;
   overflow-y: scroll;
   text-align: center;
 }
@@ -126,7 +126,7 @@ legend{
   }
 
   .all-forms{
-    height: 84.5dvh;
+    height: 84.8dvh;
     width: 100%;
     padding: 1rem;
   }
