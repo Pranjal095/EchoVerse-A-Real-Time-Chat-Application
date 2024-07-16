@@ -46,7 +46,7 @@ html{
 
 .all-forms{
   width: 100vw;
-  height: 83.9dvh;
+  height: 86.5dvh;
   overflow-y: scroll;
   text-align: center;
 }
@@ -115,7 +115,7 @@ legend{
 
   .room-header{
     font-size: 1.9rem;
-    padding: 3.5dvh;
+    padding: 2.2dvh;
   }
 
   .logout-app{
@@ -126,8 +126,9 @@ legend{
   }
 
   .all-forms{
+    height: 84.5dvh;
     width: 100%;
-    padding: 1.3rem;
+    padding: 1rem;
   }
 
   .room-form{
